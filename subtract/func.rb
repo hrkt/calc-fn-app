@@ -1,9 +1,12 @@
 require 'fdk'
+require 'bigdecimal'
 
-def myfunction(context:, input:)
-  input_value = input.respond_to?(:fetch) ? input.fetch('name') : input
-  name = input_value.to_s.strip.empty? ? 'World' : input_value
-  { message: "Hello #{name}!" }
+def subtract(context:, input:)
+  left = input.respond_to?(:fetch) ? input.fetch('left') : "0"
+  right = input.respond_to?(:fetch) ? input.fetch('right') : "0"
+  l = BigDecimal(left)
+  r = BigDecimal(right)
+  { result: (l - r).to_s("F") }
 end
 
-FDK.handle(target: :myfunction)
+FDK.handle(target: :subtract)
