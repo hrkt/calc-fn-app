@@ -1,0 +1,9 @@
+schema_version: 20180708
+name: divide
+version: 0.0.11
+runtime: go
+entrypoint: ./func
+triggers:
+- name: divide
+  type: http
+  source: /divide
